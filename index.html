@@ -1,75 +1,95 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Millinch.github.io by millinch</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Showdown - Markdown in Javascript</title>
+	<link rel="stylesheet" href="./assets/prettify/themes/tomorrow.css" type="text/css" media="all" />
+	<link href="assets/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+	<link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/gollum_editor/css/preview.css" type="text/css" media="all" />
 
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/millinch">View On GitHub</a></li>
-        </nav>
-      </div><!-- end header -->
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/prettify/prettify.js"></script>
+	<script type="text/javascript" src="./assets/showdown/showdown.js"></script>
+	<script type="text/javascript" src="./assets/showdown/extensions/table.js"></script>
+	<script type="text/javascript" src="./assets/showdown/extensions/prettify.js"></script>
+	
+	<style>
+	#wiki-edit-panel{
+		margin:10px;
+	}
+	#showdown-info{
+		width:380px;
+	}
+	</style>
+</head>
 
-    <div class="wrapper">
+<body class="container">
+	<div id="wiki-edit-panel" class="panel panel-info" width="100%">
+		<div id="pageHeader" class="panel-heading">
+			<h1><a href="http://www.attacklab.net/showdown-gui.html">Showdown</a></h1>
+			<select id="paneSetting" class="selectpicker show-tick span2" data-style="btn-success">
+				<option value="previewPane">Preview</option>
+				<option value="outputPane">HTML Output</option>
+				<option value="syntaxPane">Syntax Guide</option>
+			</select>
+		</div>
+		<div class="panel-body">			
+			<div class="col-sm-6 col-md-6">
+				<div id="previewPane" class="gollum-preview" class="col-sm-6 col-md-6" style="height:548px;overflow:scroll"></div>
+				<textarea id="outputPane" class="pane" readonly="readonly" style="display: none; height: 548px;width: 100%"></textarea>
+				<textarea id="syntaxPane" class="pane" readonly="readonly" style="display: none; height: 548px;width: 100%"></textarea>
+			</div>
+			<div class="col-sm-6 col-md-6">
+				<textarea class="col-sm-6 col-md-6" id="inputPane" cols="80" rows="20" class="pane" style="height: 548px;width: 100%"></textarea>
+			</div>				
+		</div>		
+		
+		<div class="panel-footer">
+			<div id="showdown-info" class="center-block">
+				<span id="convertTextControls">				
+					<select id="convertTextSetting" class="selectpicker show-tick span2" data-style="btn-info">
+						<option value="delayed">in the background</option>
+						<option value="continuous">every keystroke</option>
+						<option value="manual">manually</option>
+					</select>
+					<button id="convertTextButton" type="button" class="btn btn-success">转换</button>
+				</span>
+				<span>一共耗时</span>
+				<span id="processingTime" title="Last processing time" class="label label-success">0 ms</span>
+			</div>
+		</div>
+	</div><!-- end wiki-edit-panel -->
 
-      <section>
-        <div id="title">
-          <h1>Millinch.github.io</h1>
-          <p></p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/millinch">millinch</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+	
+	<script type="text/javascript" src="./assets/showdown/showdown-gui.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/bootstrap-select/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="./assets/behave/behave.js"></script>
+	<script type="text/javascript" src="./assets/tabIndent/tabIndent.js"></script>
+	
+	<script>
+    $(function(){
+		
+		$('.selectpicker').selectpicker();
+		$('.selectpicker').addClass("btn-sm");
 
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+		//Enable Behave.js
+		var editor = new Behave({
+			
+			textarea: 		document.getElementById('inputPane'),
+			replaceTab: 	true,
+			softTabs: 		true,
+			tabSize: 		4,
+			autoOpen: 		true,
+			overwrite: 		true,
+			autoStrip: 		true,
+			//autoIndent: 	true
+	
+		});
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+		tabIndent.render(document.getElementById('inputPane'));
+    });
+    </script>
+	</body>
 </html>
