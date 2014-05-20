@@ -7,12 +7,6 @@
 	<link href="assets/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
 	<link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/gollum_editor/css/preview.css" type="text/css" media="all" />
-
-	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="./assets/prettify/prettify.js"></script>
-	<script type="text/javascript" src="./assets/showdown/showdown.js"></script>
-	<script type="text/javascript" src="./assets/showdown/extensions/table.js"></script>
-	<script type="text/javascript" src="./assets/showdown/extensions/prettify.js"></script>
 	
 	<style>
 	#wiki-edit-panel{
@@ -61,7 +55,11 @@
 		</div>
 	</div><!-- end wiki-edit-panel -->
 
-	
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/prettify/prettify.js"></script>
+	<script type="text/javascript" src="./assets/showdown/showdown.js"></script>
+	<script type="text/javascript" src="./assets/showdown/extensions/table.js"></script>
+	<script type="text/javascript" src="./assets/showdown/extensions/prettify.js"></script>
 	<script type="text/javascript" src="./assets/showdown/showdown-gui.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/bootstrap-select/bootstrap-select.min.js"></script>
@@ -73,6 +71,20 @@
 		$('.selectpicker').selectpicker();
 		$('.selectpicker').addClass("btn-sm");
 
+		//Enable Behave.js
+		var editor = new Behave({
+			
+			textarea:	document.getElementById('inputPane'),
+			replaceTab: 	true,
+			tabSize: 	4,
+			softTabs: 	true,
+			autoOpen: 	true,
+			overwrite: 	true,
+			autoStrip: 	true,
+			autoIndent: 	true
+	
+		});
+		
 		tabIndent.render(document.getElementById('inputPane'));
     });
     </script>
