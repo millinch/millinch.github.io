@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="./assets/prettify/themes/tomorrow.css" type="text/css" media="all" />
 	<link href="assets/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
 	<link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="assets/gollum_editor/css/preview.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="assets/gollum_editor/css/preview.css" type="text/css" media="all" />	
 	
 	<style>
 	#wiki-edit-panel{
@@ -35,7 +35,43 @@
 				<textarea id="syntaxPane" class="pane" readonly="readonly" style="display: none; height: 548px;width: 100%"></textarea>
 			</div>
 			<div class="col-sm-6 col-md-6">
-				<textarea class="col-sm-6 col-md-6" id="inputPane" cols="80" rows="20" class="pane" style="height: 548px;width: 100%"></textarea>
+				<textarea class="col-sm-6 col-md-6" id="inputPane" cols="80" rows="20" class="pane" style="height: 548px;width: 100%">
+
+#例子
+******
+
+##表格
+| Tables        | Are           | Cool  |
+| ------------- | ------------- | ----- |
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+##代码
+```
+public class Foo{
+	public static void main(String[] args){
+		System.out.println("Hello world");
+	}
+}
+```
+
+***
+
+```
+//Enable Behave.js
+var editor = new Behave({
+  textarea: 	document.getElementById('inputPane'),
+  replaceTab: 	true,
+  tabSize: 		4,
+  softTabs: 	true,
+  autoOpen: 	true,
+  overwrite: 	true,
+  autoStrip: 	true,
+  autoIndent: 	false
+});
+```				
+				</textarea>
 			</div>				
 		</div>		
 		
@@ -63,6 +99,7 @@
 	<script type="text/javascript" src="./assets/showdown/showdown-gui.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/bootstrap-select/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="./assets/behave/behave.js"></script>
 	<script type="text/javascript" src="./assets/tabIndent/tabIndent.js"></script>
 	
 	<script>
@@ -74,18 +111,19 @@
 		//Enable Behave.js
 		var editor = new Behave({
 			
-			textarea:	document.getElementById('inputPane'),
+			textarea: 		document.getElementById('inputPane'),
 			replaceTab: 	true,
-			tabSize: 	4,
-			softTabs: 	true,
-			autoOpen: 	true,
-			overwrite: 	true,
-			autoStrip: 	true,
+			tabSize: 		4,
+			softTabs: 		true,
+			autoOpen: 		true,
+			overwrite: 		true,
+			autoStrip: 		true,
 			autoIndent: 	true
 	
 		});
 		
 		tabIndent.render(document.getElementById('inputPane'));
+
     });
     </script>
 	</body>
