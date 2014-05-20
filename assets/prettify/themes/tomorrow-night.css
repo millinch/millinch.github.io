@@ -5,8 +5,9 @@
   font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
   font-size: 12px;
   line-height: 1.5;
-  border: 1px solid #ccc;
-  padding: 2px 5px;
+  border: 1px solid #ccc;  
+  padding:2px 5px;
+  margin:10px;
 }
 
 .pln {
@@ -24,6 +25,7 @@
 
   .com {
     color: #969896;
+	font-style: italic;
   }
 
   .typ {

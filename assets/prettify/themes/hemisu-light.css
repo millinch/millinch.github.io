@@ -6,7 +6,8 @@
   font-size: 12px;
   line-height: 1.5;
   border: 1px solid #ccc;
-  padding: 2px 5px;
+  padding:2px 5px;
+  margin:10px;
 }
 
 .pln {
@@ -15,19 +16,21 @@
 
 @media screen {
   .str {
-    color: #739200;
+    color: #006699;
   }
 
   .kwd {
     color: #739200;
+	font-weight: bold;
   }
 
   .com {
     color: #999999;
+	font-style: italic;
   }
 
   .typ {
-    color: #ff0055;
+    color: #C7254E;
   }
 
   .lit {

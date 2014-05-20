@@ -5,7 +5,8 @@
   font-size: 12px;
   line-height: 1.5;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding:2px 5px;
+  margin:10px;
 }
 
 .pln {
@@ -23,6 +24,7 @@
 
   .com {
     color: #999988;
+	font-style: italic;
   }
 
   .typ {
