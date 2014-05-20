@@ -15,6 +15,10 @@
 	#showdown-info{
 		width:380px;
 	}
+	.gollum-preview code{
+		padding: 5px 10px;
+		margin: 5px 10px;
+	}
 	</style>
 </head>
 
@@ -48,11 +52,13 @@
 | zebra stripes | are neat      |    $1 |
 
 ##代码
+>试试`Tab`键递进,选中文本并使用`Shift + Tab`缩进  
+
 ```
 public class Foo{
-	public static void main(String[] args){
-		System.out.println("Hello world");
-	}
+public static void main(String[] args){
+System.out.println("Hello world");
+}
 }
 ```
 
@@ -61,14 +67,14 @@ public class Foo{
 ```
 //Enable Behave.js
 var editor = new Behave({
-  textarea: 	document.getElementById('inputPane'),
-  replaceTab: 	true,
-  tabSize: 		4,
-  softTabs: 	true,
-  autoOpen: 	true,
-  overwrite: 	true,
-  autoStrip: 	true,
-  autoIndent: 	false
+textarea: 	document.getElementById('inputPane'),
+replaceTab: 	true,
+tabSize: 		4,
+softTabs: 	true,
+autoOpen: 	true,
+overwrite: 	true,
+autoStrip: 	true,
+autoIndent: 	false
 });
 ```				
 				</textarea>
