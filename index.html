@@ -74,11 +74,11 @@
 		$('.selectpicker').selectpicker();
 		$('.selectpicker').addClass("btn-sm");
 
-		//Enable Behave.js
+		//Enable Behave.js (disable 'replaceTab',tabIdent will do this,or replace twice)
 		var editor = new Behave({
 			
 			textarea: 		document.getElementById('inputPane'),
-			replaceTab: 	true,
+			//replaceTab: 	true,
 			softTabs: 		true,
 			tabSize: 		4,
 			autoOpen: 		true,
