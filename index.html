@@ -13,7 +13,8 @@
 		margin:10px;
 	}
 	#showdown-info{
-		width:380px;
+
+		margin: 10px;
 	}
 	</style>
 </head>
@@ -22,6 +23,7 @@
 	<div id="wiki-edit-panel" class="panel panel-info" width="100%">
 		<div id="pageHeader" class="panel-heading">
 			<h1><a href="http://www.attacklab.net/showdown-gui.html">Showdown</a></h1>
+			<h3>This is Ruobaolity(弱爆了- -)! Marked.js<a href="marked/index.html">(Demo)</a>有更全面的Markdown语法支持！More powerful than showdown.js</h3>
 			<select id="paneSetting" class="selectpicker show-tick span2" data-style="btn-success">
 				<option value="previewPane">Preview</option>
 				<option value="outputPane">HTML Output</option>
@@ -76,20 +78,21 @@ autoIndent: 	false
 				</textarea>
 			</div>				
 		</div>		
+		<div id="showdown-info" class="text-center">
+			<span id="convertTextControls">				
+				<select id="convertTextSetting" class="selectpicker show-tick span2" data-style="btn-info">
+					<option value="delayed">in the background</option>
+					<option value="continuous">every keystroke</option>
+					<option value="manual">manually</option>
+				</select>
+				<button id="convertTextButton" type="button" class="btn btn-success">转换</button>
+			</span>
+			<span>一共耗时</span>
+			<span id="processingTime" title="Last processing time" class="label label-success">0 ms</span>
+		</div>
 		
-		<div class="panel-footer">
-			<div id="showdown-info" class="center-block">
-				<span id="convertTextControls">				
-					<select id="convertTextSetting" class="selectpicker show-tick span2" data-style="btn-info">
-						<option value="delayed">in the background</option>
-						<option value="continuous">every keystroke</option>
-						<option value="manual">manually</option>
-					</select>
-					<button id="convertTextButton" type="button" class="btn btn-success">转换</button>
-				</span>
-				<span>一共耗时</span>
-				<span id="processingTime" title="Last processing time" class="label label-success">0 ms</span>
-			</div>
+		<div class="panel-footer text-center">
+			<span>&copy Millinch.By <a href="https://github.com/johntostring" target="_blank">John Zhang</a></span>
 		</div>
 	</div><!-- end wiki-edit-panel -->
 
