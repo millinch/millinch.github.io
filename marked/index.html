@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Marked - Powerful Markdown Compiler</title>
+  <link rel="stylesheet" href="assets/demo/css/preview.css"/>
+  <link rel="stylesheet" href="assets/highlight/styles/solarized_dark.css"/>
+  <link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/prettify/themes/hemisu-light.css" type="text/css" media="all" />
+  <style>
+	#preview-pad pre{		
+		margin:5px 10px;
+	}
+	#preview-pad p code{
+		border:1px solid #CCC;
+		margin:2px 5px;
+	}
+	#preview-pad,#edit-pad{
+		border: 1px solid #CCC;
+		padding: 10px;
+		height: 548px;
+	}
+	#edit-pad{
+		resize:none;
+	}
+  </style>
+ </head>
+ <body> 
+	<div class="panel panel-info" width="100%">
+		<div id="pageHeader" class="panel-heading">
+			<h1><a href="https://github.com/chjj/marked" target="_blank">Marked</a> Demo</h1>
+			<h2>更全面的Markdown语法支持！More powerful than showdown.js</h2>
+			<h3><a href="https://github.com/isagalaev/highlight.js" target="_blank">highlight</a>语法高亮，不依赖Jquery</h3>
+			<h6>Showdown.js实现的<a href="../index.html">Demo</a></h6>
+		</div>
+
+		<div class="panel-body">			
+			<div class="col-sm-6 col-md-6">
+				<div id="preview-pad" class="marked-preview" class="col-sm-6 col-md-6" style="overflow:scroll"></div>				
+			</div>
+			<div class="col-sm-6 col-md-6">
+				<textarea id="edit-pad" class="col-sm-6 col-md-6" cols="80" rows="20" style="width: 100%">
+#例子
+******
+
+##表格
+| Tables        | Are           | Cool  |
+| ------------- | ------------- | ----- |
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+##代码
+>试试`Tab`键递进,选中文本并使用`Shift + Tab`缩进  
+
+```
+public class Foo{
+public static void main(String[] args){
+System.out.println("Hello world");
+}
+}
+```
+
+***
+
+```
+//Enable Behave.js
+var editor = new Behave({
+textarea: 	document.getElementById('inputPane'),
+replaceTab: 	true,
+tabSize: 		4,
+softTabs: 	true,
+autoOpen: 	true,
+overwrite: 	true,
+autoStrip: 	true,
+autoIndent: 	false
+});
+```</textarea>
+			</div>				
+		</div>
+		<div class="row text-center" style="margin:10px">
+			<button id="btn-convert" class="btn btn-primary" onclick="compile()">立即转换</button>
+			<span id="time-released" title="编译耗时" class="label label-success">0 ms</span>
+		</div>
+
+		<div class="panel-footer text-center">			
+			<span>&copy Millinch.By <a href="https://github.com/johntostring" target="_blank">John Zhang</a></span>			
+		</div>
+	</div>
+ </body>
+  <script src="assets/require/require.min.js" data-main="assets/main.js" ></script>
+  <script src="assets/plugins/behave.min.js"></script>
+  <script>
+
+	var compile = function(){
+		var raw = document.getElementById('edit-pad').value;
+		//highlight语法高亮
+		require(['marked','highlight'],function (marked){						
+			marked.setOptions({
+			  highlight: function (code) {
+				return hljs.highlightAuto(code).value;
+			  }
+			});
+			var startTime = new Date().getTime();
+			var result = marked(raw);
+			var endTime = new Date().getTime();	
+			var processingTime = endTime - startTime;
+			document.getElementById('preview-pad').innerHTML = result;
+			document.getElementById("time-released").innerHTML = processingTime+" ms";
+		});
+		//prettyprint语法高亮
+		/*require(['jquery','marked','prettify'], function ($,marked){
+			var prettifyRenderer = new marked.Renderer();
+			prettifyRenderer.code = function (code,lang,escaped){
+				return '<pre class="prettyprint linenums' 
+					+ ((typeof(lang) == 'undefined')? '>' : (' lang-' + lang +'>')) 
+					+ '"<code class="prettyprint">'
+					+ code
+					+ '\n</code></pre>\n';
+			}
+			prettifyRenderer.codespan = function (code){
+				return '<code class = "prettyprint">' + code + '</code>'
+			}
+			var startTime = new Date().getTime();
+			var result = marked(raw, { renderer: prettifyRenderer });
+			var endTime = new Date().getTime();	
+			var processingTime = endTime - startTime;
+			document.getElementById('preview-pad').innerHTML = result;
+			document.getElementById("time-released").innerHTML = processingTime+" ms";
+			prettyPrint();			
+		});*/
+	}
+	window.onload = function (){		
+		var editor = new Behave({			
+			textarea: 		document.getElementById('edit-pad'),
+			replaceTab: 	true,
+			tabSize: 		4,
+			softTabs: 		true,
+			autoOpen: 		true,
+			overwrite: 		true,
+			autoStrip: 		true,
+			autoIndent: 	true
+	
+		});
+	}
+	document.getElementById('edit-pad').onkeyup = compile;
+  </script>
+</html>

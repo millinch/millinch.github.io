@@ -1,0 +1,48 @@
+.marked-preview{	
+	font:15px Helvetica,Hiragino Sans GB,Microsoft Yahei,Arial,sans-serif;
+	line-height: 1.7;
+}
+.marked-preview a{
+	color: #0099CC;
+	text-decoration: none;
+}
+.marked-preview hr{
+	background: transparent url("../images/hr.png") repeat-x 0 0;
+	border: 0 none;
+	color: #cccccc;
+	height: 5px;
+	padding: 0;
+}
+.marked-preview blockquote{
+	
+	border-left: 4px solid #6699CC;
+	padding: 5px 10px;
+	color: #777777;
+}
+.marked-preview table{
+	margin:5px;
+	width: auto;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 1px solid #ddd;
+}
+.marked-preview table thead tr{
+	background-color: #006699;
+	color:#FFFFFF;
+}
+.marked-preview table tr{
+	border-top: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.marked-preview table thead tr th, .marked-preview table tbody tr td {
+	border: 1px solid #ddd;
+	padding: 6px 13px;
+}
+.marked-preview table thead{	
+	font-weight: bold;
+}
+.marked-preview table tbody tr:nth-child(even){
+	background-color: #DDF2F2;
+	color:#000000;
+}
